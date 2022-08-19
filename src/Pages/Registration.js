@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 
 import { Registration as RegistrationRequest } from './../Requests/Auth';
 
+import './Registration.scss';
+
 export default function Registration() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
