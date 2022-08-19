@@ -3,6 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import { Auth as AuthRequest } from './../Requests/Auth.js';
 
+import './Auth.scss';
+
 export default function Auth() {
   const [ username, setUsername ] = useState("");
   const [ password, setPassword ] = useState("");
