@@ -14,7 +14,7 @@ export default function Registration() {
   const navigate = useNavigate();
 
   function submit() {
-    if(password != secondPassword) return setError('Passwords are different');
+    if(password !== secondPassword) return setError('Passwords are different');
     const {data, error} = RegistrationRequest({ username, password });
     if(error) setError(error);
     if(data) navigate('/link');
