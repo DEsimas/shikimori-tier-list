@@ -6,12 +6,14 @@ import { Auth as AuthRequest } from './../Requests/Auth.js';
 export default function Auth() {
   const [ username, setUsername ] = useState("");
   const [ password, setPassword ] = useState("");
+  const [ errorMessage, setErrorMessage ] = useState();
   
   const navigate = useNavigate();
 
   function submit() {
-    AuthRequest({ username, password });
-    navigate('/uwu');
+    const { data, error } = AuthRequest({ username, password });
+    if(error) setErrorMessage(error);
+    else navigate('/uwu');
   }
 
   return (
@@ -21,6 +23,7 @@ export default function Auth() {
       <input className='auth-input' type={'password'} placeholder='Password' onChange={e => setPassword(e.target.value)} />
       <button onClick={submit} className='auth-button'>Continue</button>
       <Link to='/Registration' className='auth-link'>Create an account</Link>
+      {errorMessage ? <span className='auth-error'>{errorMessage}</span> : ""}
     </div>
   );
 }
