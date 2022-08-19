@@ -1,16 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import Root from './Pages/Root';
+import Auth from './Pages/Auth';
+import Registration from './Pages/Registration';
 
 import './index.scss';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
     <Routes>
       <Route path='/' element={<Root />} />
+      <Route path='/auth' element={<Auth />} />
+      <Route path='/authentication' element={<Auth />} />
+      <Route path='/registration' element={<Registration />} />
     </Routes>
   </BrowserRouter>
 );
