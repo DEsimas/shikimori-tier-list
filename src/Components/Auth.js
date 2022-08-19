@@ -15,7 +15,7 @@ export default function Auth() {
   function submit() {
     const { data, error } = AuthRequest({ username, password });
     if(error) setErrorMessage(error);
-    else navigate('/uwu');
+    if(data) navigate('/');
   }
 
   return (
