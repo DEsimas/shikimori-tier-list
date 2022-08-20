@@ -1,2 +1,2 @@
-import Auth from './../Components/Auth.js';
-export default Auth;
+import Auth from '../Components/Auth'
+export default Auth

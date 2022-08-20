@@ -1,2 +1,2 @@
-import Link from './../Components/Link';
-export default Link;
+import Link from '../Components/Link'
+export default Link
