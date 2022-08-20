@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Root from './Pages/Root'
 import Auth from './Pages/Auth'
 import Link from './Pages/Link'
+import Success from './Pages/Success'
 import Registration from './Pages/Registration'
 
 import './index.scss'
@@ -18,6 +19,7 @@ root.render(
             <Route path='/authentication' element={<Auth />} />
             <Route path='/registration' element={<Registration />} />
             <Route path='/link' element={<Link />} />
+            <Route path='/success' element={<Success />} />
         </Routes>
     </BrowserRouter>
 )

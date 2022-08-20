@@ -15,7 +15,7 @@ export default function Auth() {
     function submit() {
         const { data, error } = AuthRequest({ username, password })
         if (error) setErrorMessage(error)
-        if (data) navigate('/')
+        if (data) navigate('/success')
     }
 
     return (
