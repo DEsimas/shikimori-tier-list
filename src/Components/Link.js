@@ -27,7 +27,7 @@ export default function Link() {
         const { data, error } = await verifyCode()
         e.target.removeAttribute('disabled')
         if(error) setCodeError(error)
-        else navigate('/')
+        else navigate('/success')
     }
 
     return (
