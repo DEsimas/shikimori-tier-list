@@ -1,0 +1,69 @@
+@import '../variables.scss';
+
+.link {
+    border: 3px solid $secondary-background;
+    border-radius: 20px;
+    position: absolute;
+    font-size: 24px;
+    width: 40%;
+    left: 30%;
+    top: 10%;
+    padding: 20px;
+
+    &-langButton {
+        position: absolute;
+        right: 10px;
+    }
+
+    &-s1 {
+
+        &-header {
+            margin: 0;
+        }
+
+        &-input {
+            display: block;
+        }
+
+        &-button {
+            display: block;
+            margin-top: 20px;
+        }
+
+        &-error {
+            margin-top: 15px;
+            font-size: 28px;
+            display: block;
+            color: $error;
+        }
+    }
+
+    &-s2 {
+
+        &-code {
+            font-size: 28px;
+
+            &-content {
+                color: #ffae00;
+                text-shadow: 0 0 3px #ffae00;
+            }
+        }
+
+        &-copy {
+            display: inline;
+            margin-left: 20px;
+        }
+
+        &-button {
+            margin-top: 15px;
+            display: block;
+        }
+
+        &-error {
+            margin-top: 15px;
+            font-size: 28px;
+            display: block;
+            color: $error;
+        }
+    }
+}
