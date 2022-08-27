@@ -1,4 +1,4 @@
-export function getCode(username) {
+export async function getCode(username) {
     console.log({username})
     return {
         data: undefined,

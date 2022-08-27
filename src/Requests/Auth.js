@@ -1,4 +1,5 @@
-export function Auth(body) {
+export async function Auth(body) {
+    for(let i = 0; i < 100000000; i++) {}
     console.log(body)
     return {
         data: undefined,
@@ -6,7 +7,7 @@ export function Auth(body) {
     }
 }
 
-export function Registration(body) {
+export async function Registration(body) {
     console.log(body)
     return {
         data: undefined,
