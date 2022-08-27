@@ -13,9 +13,11 @@ export default function Registration() {
 
     const navigate = useNavigate()
 
-    function submit() {
+    async function submit(e) {
         if (password !== secondPassword) return setError('Passwords are different')
-        const { data, error } = RegistrationRequest({ username, password })
+        e.target.setAttribute('disabled', 'disabled')
+        const { data, error } = await RegistrationRequest({ username, password })
+        e.target.removeAttribute('disabled')
         if (error) setError(error)
         if (data) navigate('/success')
     }

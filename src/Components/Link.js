@@ -7,8 +7,10 @@ export default function Link() {
     const [code, setCode] = useState()
     const [codeError, setCodeError] = useState()
 
-    function getCode() {
-        const { data, error } = getCodeRequest()
+    async function getCode(e) {
+        e.target.setAttribute('disabled', 'disabled')
+        const { data, error } = await getCodeRequest()
+        e.target.removeAttribute('disabled')
         if(error) setCodeError(error)
         else setCode(data.code)
     }
@@ -25,8 +27,8 @@ export default function Link() {
             <div className='link-s2'>
                 <p className='link-s2-para'>
                     {lang === 'en' ?
-                        '2)Open settings on shikimori and state this code as \"website\" (after linking you can remove it)' :
-                        '2)Перейдите в настройки вашего шикимори аккаунта и в поле \"сайт\" укажите код (после привязки можно убрать его)'}
+                        '2)Open settings on shikimori and state this code as "website" (after linking you can remove it)' :
+                        '2)Перейдите в настройки вашего шикимори аккаунта и в поле "сайт" укажите код (после привязки можно убрать его)'}
                 </p>
                 <button className='link-s2-button' onClick={getCode}> {lang === 'en' ? 'Get code' : 'Получить код'} </button>
                 <span className='link-s2-code'>{code}</span>

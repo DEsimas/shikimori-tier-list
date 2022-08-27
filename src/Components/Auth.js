@@ -12,8 +12,10 @@ export default function Auth() {
 
     const navigate = useNavigate()
 
-    function submit() {
-        const { data, error } = AuthRequest({ username, password })
+    async function submit(e) {
+        e.target.setAttribute('disabled', 'disabled')
+        const { data, error } = await AuthRequest({ username, password })
+        e.target.removeAttribute('disabled')
         if (error) setErrorMessage(error)
         if (data) navigate('/success')
     }
