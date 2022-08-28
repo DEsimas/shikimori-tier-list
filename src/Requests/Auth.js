@@ -1,10 +1,22 @@
 import axios from 'axios'
 
 export async function Auth(body) {
-    console.log(body)
-    return {
-        data: undefined,
-        error: 'Server is not defined'
+    try {
+        const res = await axios.post(process.env.REACT_APP_SERVER_URL + '/login', { ...body })
+        const tokens = res.data
+
+        localStorage.setItem('accessToken', tokens.accessToken)
+        localStorage.setItem('refreshToken', tokens.refreshToken)
+
+        return {
+            data: res.statusText,
+            error: undefined
+        }
+    } catch (err) {
+        return {
+            data: undefined,
+            error: err.response.data.error
+        }
     }
 }
 
