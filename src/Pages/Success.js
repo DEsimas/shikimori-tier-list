@@ -9,12 +9,12 @@ export default function Success() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if(timer === 0) navigate('/')
+        if (timer === 0) navigate('/')
 
         setTimeout(() => {
             setTimer(timer - 1)
         }, 1000)
-    }, [timer])
+    })
 
     return (
         <div className='success'>

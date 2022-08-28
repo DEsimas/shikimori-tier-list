@@ -18,15 +18,15 @@ export default function Link() {
         e.target.setAttribute('disabled', 'disabled')
         const { data, error } = await getCodeRequest(username)
         e.target.removeAttribute('disabled')
-        if(error) setNameError(error)
+        if (error) setNameError(error)
         else setCode(data.code)
     }
 
     async function finish(e) {
         e.target.setAttribute('disabled', 'disabled')
-        const { data, error } = await verifyCode()
+        const { error } = await verifyCode()
         e.target.removeAttribute('disabled')
-        if(error) setCodeError(error)
+        if (error) setCodeError(error)
         else navigate('/success')
     }
 
