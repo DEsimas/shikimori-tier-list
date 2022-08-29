@@ -1,9 +1,7 @@
+import axios from "axios"
+
 export async function getCode(username) {
-    console.log({username})
-    // return {
-    //     data: undefined,
-    //     error: 'Server is undefined'
-    // }
+    console.log({ username })
     return {
         data: { code: '432oij5r3i43kl' },
         error: undefined
@@ -15,5 +13,25 @@ export async function verifyCode() {
     return {
         data: undefined,
         error: 'Server is undefined'
+    }
+}
+
+export async function getUsername() {
+    try {
+        const res = await axios.get(process.env.REACT_APP_SERVER_URL + '/link/username', {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+        return {
+            error: undefined,
+            data: { username: res.data.username }
+        }
+    } catch (error) {
+        console.log(error)
+        return {
+            error: error.request.status,
+            data: undefined
+        }
     }
 }

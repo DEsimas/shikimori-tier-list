@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { getCode as getCodeRequest, verifyCode } from '../Requests/Link'
+import { getCode as getCodeRequest, getUsername, verifyCode } from '../Requests/Link'
+import { makeRequest } from '../Requests/Tokens'
 
 import './Link.scss'
 
@@ -30,13 +31,22 @@ export default function Link() {
         else navigate('/success')
     }
 
+    useEffect(() => {
+        async function fetch() {
+            const res = await makeRequest(undefined, getUsername)
+            if (!res.error)
+                setUsername(res.data.username)
+        }
+        fetch()
+    }, [])
+
     return (
         <div className='link'>
             <button className='link-langButton' onClick={() => setLang(lang === 'en' ? 'ru' : 'en')}>{lang === 'en' ? 'Rus' : 'Eng'}</button>
             <h2 className='link-s1-header'>{lang === 'en' ? 'It\'s time to link your account with shikimori' : 'Пора привязать ваш шикимори аккаунт'}</h2>
             <div className='link-s1'>
                 <p className='link-s1-para'>{lang === 'en' ? '1) Enter your shikimori nickname' : '1) Введите ваш ник на шикимори'}</p>
-                <input onChange={e => setUsername(e.target.value)} className='input-s1-input' type='text' placeholder={lang === 'en' ? 'nickname' : 'ник'} />
+                <input onChange={e => setUsername(e.target.value)} className='input-s1-input' value={username} type='text' placeholder={lang === 'en' ? 'nickname' : 'ник'} />
                 <button className='link-s1-button' onClick={getCode}> {lang === 'en' ? 'Get code' : 'Получить код'} </button>
                 <span className='link-s1-error'>{nameError}</span>
             </div>
