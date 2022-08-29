@@ -1,10 +1,23 @@
 import axios from "axios"
 
 export async function getCode(username) {
-    console.log({ username })
-    return {
-        data: { code: '432oij5r3i43kl' },
-        error: undefined
+    try {
+        const res = await axios.post(process.env.REACT_APP_SERVER_URL + '/link/code', {
+            nickname: username
+        }, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+        return {
+            error: undefined,
+            data: { code: res.data.code }
+        }
+    } catch (error) {
+        return {
+            error: error?.response?.data?.error || error.request.status,
+            data: undefined
+        }
     }
 }
 
@@ -28,7 +41,6 @@ export async function getUsername() {
             data: { username: res.data.username }
         }
     } catch (error) {
-        console.log(error)
         return {
             error: error.request.status,
             data: undefined

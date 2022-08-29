@@ -17,7 +17,7 @@ export default function Link() {
 
     async function getCode(e) {
         e.target.setAttribute('disabled', 'disabled')
-        const { data, error } = await getCodeRequest(username)
+        const { data, error } = await makeRequest(username, getCodeRequest)
         e.target.removeAttribute('disabled')
         if (error) setNameError(error)
         else setCode(data.code)
