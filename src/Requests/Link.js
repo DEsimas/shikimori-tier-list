@@ -22,10 +22,22 @@ export async function getCode(username) {
 }
 
 export async function verifyCode() {
-    console.log('verifying code...')
-    return {
-        data: undefined,
-        error: 'Server is undefined'
+    try {
+        const res = await axios.get(process.env.REACT_APP_SERVER_URL + '/link/verify', {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+        console.log(res);
+        return {
+            error: undefined,
+            data: res.statusText
+        }
+    } catch (error) {
+        return {
+            error: error?.response?.data?.error,
+            data: undefined
+        }
     }
 }
 

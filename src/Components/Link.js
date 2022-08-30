@@ -25,7 +25,7 @@ export default function Link() {
 
     async function finish(e) {
         e.target.setAttribute('disabled', 'disabled')
-        const { error } = await verifyCode()
+        const { error } = await makeRequest(undefined, verifyCode)
         e.target.removeAttribute('disabled')
         if (error) setCodeError(error)
         else navigate('/success')
