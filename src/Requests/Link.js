@@ -59,3 +59,22 @@ export async function getUsername() {
         }
     }
 }
+
+export async function getCheck() {
+    try {
+        const res = await axios.get(process.env.REACT_APP_SERVER_URL + '/link/check', {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+        return {
+            error: undefined,
+            data: res.data.check
+        }
+    } catch (error) {
+        return {
+            error: error.request.status,
+            data: undefined
+        }
+    }
+}
