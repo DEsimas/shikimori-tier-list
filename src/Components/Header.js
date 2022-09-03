@@ -4,6 +4,8 @@ import { logOut as logOutRequest } from '../Requests/Auth'
 
 import './Header.scss'
 import { useNavigate } from 'react-router-dom'
+import { makeRequest } from '../Requests/Tokens'
+import { unlink as unlinkRequest } from '../Requests/Link'
 
 export default function Header() {
     const [nickname, setNickname] = useState()
@@ -12,6 +14,12 @@ export default function Header() {
 
     function logOut() {
         logOutRequest().then(res => { if (res.data) navigate('/authentication') })
+    }
+
+    function unlink() {
+        makeRequest(undefined, unlinkRequest).then(res => {
+            navigate('/link')
+        })
     }
 
     useEffect(() => {
@@ -27,7 +35,7 @@ export default function Header() {
             <a target='_blank' rel='noreferrer' className='header-link' href={`https://shikimori.one/${nickname}`}>Logged in as {nickname}</a>
 
             <div className='header-right'>
-                <button className='header-right-unlink'>Unlink account</button>
+                <button className='header-right-unlink' onClick={unlink}>Unlink account</button>
                 <button className='header-right-logout' onClick={logOut}>Log out</button>
             </div>
         </header>

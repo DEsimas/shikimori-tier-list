@@ -78,3 +78,22 @@ export async function getCheck() {
         }
     }
 }
+
+export async function unlink() {
+    try {
+        const res = await axios.delete(process.env.REACT_APP_SERVER_URL + '/unlink', {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+        return {
+            error: undefined,
+            data: res.statusText
+        }
+    } catch (error) {
+        return {
+            error: error.request.status,
+            data: undefined
+        }
+    }
+}
