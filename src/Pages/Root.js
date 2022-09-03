@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Link from '../Components/Link'
 import Auth from '../Components/Auth'
 import { getCheck } from '../Requests/Link'
-import Header from '../Components/Header'
+import Main from '../Components/Main'
 
 export default function Root() {
     const [state, setState] = useState()
@@ -25,7 +25,7 @@ export default function Root() {
         case 'link':
             return <Link />
         case 'list':
-            return <Header />
+            return <Main />
         default:
             return <div>Loading...</div>
     }
