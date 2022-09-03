@@ -58,3 +58,28 @@ export async function Registration(body) {
         }
     }
 }
+
+export async function logOut() {
+    try {
+        const res = await axios.delete(process.env.REACT_APP_SERVER_URL + '/logout', {
+            data: {
+                token: localStorage.getItem('refreshToken')
+            },
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+        console.log(res);
+        localStorage.removeItem('accessToken')
+        localStorage.removeItem('refreshToken')
+        return {
+            error: undefined,
+            data: res.statusText
+        }
+    } catch (error) {
+        return {
+            error: error?.response?.data?.error,
+            data: undefined
+        }
+    }
+}

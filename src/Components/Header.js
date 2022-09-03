@@ -1,10 +1,18 @@
 import { useEffect, useState } from 'react'
 import { getUsername } from '../Requests/Link'
+import { logOut as logOutRequest } from '../Requests/Auth'
 
 import './Header.scss'
+import { useNavigate } from 'react-router-dom'
 
 export default function Header() {
     const [nickname, setNickname] = useState()
+
+    const navigate = useNavigate()
+
+    function logOut() {
+        logOutRequest().then(res => { if (res.data) navigate('/authentication') })
+    }
 
     useEffect(() => {
         async function fetch() {
@@ -20,7 +28,7 @@ export default function Header() {
 
             <div className='header-right'>
                 <button className='header-right-unlink'>Unlink account</button>
-                <button className='header-right-logout'>Log out</button>
+                <button className='header-right-logout' onClick={logOut}>Log out</button>
             </div>
         </header>
     )
