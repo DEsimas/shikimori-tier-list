@@ -1,0 +1,20 @@
+@import './../variables.scss';
+
+.header {
+    background-color: $secondary-background;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 24px;
+
+    &-link {
+        color: white;
+    }
+
+    &-right {
+        button {
+            margin-right: 15px;
+        }
+    }
+}

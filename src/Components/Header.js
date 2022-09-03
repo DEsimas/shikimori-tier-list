@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import { getUsername } from '../Requests/Link'
 
+import './Header.scss'
+
 export default function Header() {
     const [nickname, setNickname] = useState()
 
