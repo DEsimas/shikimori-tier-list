@@ -13,12 +13,19 @@
     &-langButton {
         position: absolute;
         right: 10px;
+
+        button {
+            display: block;
+            width: 100%;
+            margin-top: 5px;
+        }
     }
 
     &-s1 {
 
         &-header {
             margin: 0;
+            width: 80%;
         }
 
         &-input {

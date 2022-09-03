@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { getCode as getCodeRequest, getUsername, verifyCode } from '../Requests/Link'
 import { makeRequest } from '../Requests/Tokens'
+import { logOut as logOutRequest } from '../Requests/Auth'
 
 import './Link.scss'
 
@@ -14,6 +15,10 @@ export default function Link() {
     const [nameError, setNameError] = useState()
 
     const navigate = useNavigate()
+
+    function logOut() {
+        logOutRequest().then(res => { if (res.data) navigate('/authentication') })
+    }
 
     async function getCode(e) {
         e.target.setAttribute('disabled', 'disabled')
@@ -48,7 +53,10 @@ export default function Link() {
 
     return (
         <div className='link'>
-            <button className='link-langButton' onClick={() => setLang(lang === 'en' ? 'ru' : 'en')}>{lang === 'en' ? 'Rus' : 'Eng'}</button>
+            <div className='link-langButton'>
+                <button onClick={() => setLang(lang === 'en' ? 'ru' : 'en')}>{lang === 'en' ? 'Rus' : 'Eng'}</button>
+                <button onClick={logOut}>Log Out</button>
+            </div>
             <h2 className='link-s1-header'>{lang === 'en' ? 'It\'s time to link your account with shikimori' : 'Пора привязать ваш шикимори аккаунт'}</h2>
             <div className='link-s1'>
                 <p className='link-s1-para'>{lang === 'en' ? '1) Enter your shikimori nickname' : '1) Введите ваш ник на шикимори'}</p>
